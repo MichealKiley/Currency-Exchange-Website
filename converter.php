@@ -24,7 +24,7 @@ $dbstmt = null;
         <a href="/index.php">Login Page</a>
         <form action="Includes/Currency_handler.php" method="post">
             <p>current => converted to</p>
-            <select name="pre_currency" id="Currency_type">
+            <select name="pre_currency" id="Currency_type" required>
                 <?php
                 foreach ($results as $value) {
                     $option = htmlspecialchars($value["currency"]);
@@ -32,7 +32,7 @@ $dbstmt = null;
                 }
                 ?>
             </select>
-            <select name="post_currency" id="Currency_type">
+            <select name="post_currency" id="Currency_type" required>
                 <?php
                 foreach ($results as $value) {
                     $option = htmlspecialchars($value["currency"]);
@@ -40,7 +40,7 @@ $dbstmt = null;
                 }
                 ?>
             </select>
-            <input type="text" id="amount" name="amount_of_currency">
+            <input type="text" id="amount" name="amount_of_currency" required>
             <input type="submit" value="Submit">
         </form>
     </div>

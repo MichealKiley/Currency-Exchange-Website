@@ -4,23 +4,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
     $email = $_POST["email"];
+    $request_type = $_POST["account_type"];
 
-    require_once "dbh.inc.php";
-    $query = ("INSERT INTO users (username, pwd, email) VALUES (:username, :pwd, :email)");
-    $db_stmt = $pdo->prepare($query);
+    if ($request_type == "Create") {
 
-    $db_stmt->bindParam(":username", $username);
-    $db_stmt->bindParam(":pwd", $password);
-    $db_stmt->bindParam(":email", $email);
+        require_once "dbh.inc.php";
 
-    $db_stmt->execute();
+        $query = ("INSERT INTO users (username, pwd, email) VALUES (:username, :pwd, :email)");
+        $db_stmt = $pdo->prepare($query);
 
-    $pdo = null;
-    $db_stmt = null;
+        $db_stmt->bindParam(":username", $username);
+        $db_stmt->bindParam(":pwd", $password);
+        $db_stmt->bindParam(":email", $email);
 
-    echo "User " . $username . " has been created!";
+        $db_stmt->execute();
 
-    die();
+        $pdo = null;
+        $db_stmt = null;
+
+        echo "User " . $username . " has been created!";
+
+        die();
+    }
 } else {
     header("Location: ../index.php");
 }

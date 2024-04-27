@@ -71,9 +71,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $pdo = null;
     $dbstmt = null;
-    die();
-
     echo $formatted_total;
+
+    die();
 } else {
-    header("Location: ../index.php");
+    header("Location: ../converter.php");
 }
