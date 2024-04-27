@@ -1,49 +1,4 @@
 <?php
-// function Conversion()
-// {
-//     // Grabbing form data
-//     $chosen_currency = $_POST["chosen_currency"];
-//     $amount_of_currency = $_POST["amount_of_currency"];
-
-//     //need to insert currency names from db to html, 
-//     // then once the form is submitted need to find matching the exhange rate from the db 
-//     //and set it to a variable called exrate
-
-
-//     // setting variables
-// $loop_counter = 0;
-// $decimal_bool = false;
-// $formatted_total = 0;
-
-//     // $exRates = array($chosen_currency => );
-
-//     //making the conversion
-//     foreach ($exRates as $type => $rate) {
-//         if ($type == $chosen_currency) {
-//             $converted_total = $amount_of_currency / $rate;
-//         }
-//     }
-
-// //cutting off the decimal numbers past the first 2 digits
-// $total_array = str_split($converted_total);
-// foreach ($total_array as $value) {
-//     if ($value == ".") {
-//         $decimal_bool = true;
-//     }
-//     if ($decimal_bool == true and $value != ".") {
-//         $loop_counter++;
-//     }
-
-//     $formatted_total .= $value;
-
-//     if ($loop_counter >= 2) {
-//         break;
-//     }
-// }
-
-//     return $formatted_total;
-// }
-
 //locking page unless the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
