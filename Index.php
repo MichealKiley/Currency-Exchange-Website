@@ -1,41 +1,19 @@
-<?php
-require_once "Includes/dbh.inc.php";
-
-$query = "SELECT * FROM currency_type;";
-$dbstmt = $pdo->prepare($query);
-$dbstmt->execute();
-
-$results = $dbstmt->fetchAll(PDO::FETCH_ASSOC);
-
-$pdo = null;
-$dbstmt = null;
-
-?>
-
-
 <!DOCTYPE html>
 <html>
 
+<head>
+
+</head>
+
 <body>
-    <header>
-        <h1>Money Converter</h1>
-    </header>
-    <div class="container">
-        <a href="/login.php">Login Page</a>
-        <form action="Includes/Currency_handler.php" method="post">
-            <p>USD => ___</p>
-            <select name="chosen_currency" id="Currency_type">
-                <?php
-                foreach ($results as $value) {
-                    $option = htmlspecialchars($value["currency"]);
-                    echo "<option value=$option>$option</option>";
-                }
-                ?>
-            </select>
-            <input type="text" id="amount" name="amount_of_currency">
-            <input type="submit" value="Submit">
-        </form>
-    </div>
+    <h1>Create Login</h1>
+    <a href="/converter.php">Conversion Page</a>
+    <form action="Includes/Login_handler.php" method="post">
+        <input type="text" name="username" id="login_textField" placeholder="Enter Username here!">
+        <input type="password" name="password" id="login_textField" placeholder="Enter password here!">
+        <input type="text" name="email" id="login_textField" placeholder="Enter email here!">
+        <input type="submit">
+    </form>
 </body>
 
 </html>

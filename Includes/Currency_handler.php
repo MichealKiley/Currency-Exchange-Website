@@ -1,11 +1,12 @@
 <?php
+
 //locking page unless the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //assigning form data to variables
-    $chosen_currency = $_POST["chosen_currency"];
+    $pre_currency = $_POST["pre_currency"];
+    $post_currency = $_POST["post_currency"];
     $amount_of_currency = $_POST["amount_of_currency"];
-    $pre_currency = "USD";
 
     //quering db for matching currency, grabbing the correct exchange rate and making the calculation
     require_once "dbh.inc.php";
@@ -16,14 +17,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $results = $dbstmt->fetchAll(PDO::FETCH_ASSOC);
 
+    // check for pre and post currency rates and make the conversion
     foreach ($results as $value) {
         $currency = $value["currency"];
         $rate = $value["ex_rate"];
 
-        if ($currency == $chosen_currency) {
-            $converted_total = $amount_of_currency / $rate;
+        if ($currency == $pre_currency) {
+            $pre_converted_amount = $amount_of_currency / $rate;
+        }
+        if ($currency == $post_currency) {
+            $post_rate = $rate;
         }
     }
+    $converted_total = $pre_converted_amount * $post_rate;
+
 
     //cutting off the decimal numbers past the first 2 digits
     $loop_counter = 0;
@@ -56,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dbstmt = $pdo->prepare($query);
 
     $dbstmt->bindParam(":pre_type", $pre_currency);
-    $dbstmt->bindParam(":post_type", $chosen_currency);
+    $dbstmt->bindParam(":post_type", $post_currency);
     $dbstmt->bindParam(":pre_amount", $amount_of_currency);
     $dbstmt->bindParam(":post_amount", $formatted_total);
 
