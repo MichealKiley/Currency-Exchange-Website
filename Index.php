@@ -1,3 +1,18 @@
+<?php
+require_once "Includes/dbh.inc.php";
+
+$query = "SELECT * FROM currency_type;";
+$dbstmt = $pdo->prepare($query);
+$dbstmt->execute();
+
+$results = $dbstmt->fetchAll(PDO::FETCH_ASSOC);
+
+$pdo = null;
+$dbstmt = null;
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -6,13 +21,17 @@
         <h1>Money Converter</h1>
     </header>
     <div class="container">
-        <form action="Handlers/Currency_handler.php" method="post">
+        <a href="/login.php">Login Page</a>
+        <form action="Includes/Currency_handler.php" method="post">
+            <p>USD => ___</p>
             <select name="chosen_currency" id="Currency_type">
-                <option value="riel">Riel</option>
-                <option value="kyat">Kyat</option>
-                <option value="krones">Krones</option>
-                <option value="lek">Lek</option>
-            </select><br>
+                <?php
+                foreach ($results as $value) {
+                    $option = htmlspecialchars($value["currency"]);
+                    echo "<option value=$option>$option</option>";
+                }
+                ?>
+            </select>
             <input type="text" id="amount" name="amount_of_currency">
             <input type="submit" value="Submit">
         </form>
