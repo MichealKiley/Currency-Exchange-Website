@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 //locking page unless the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -59,13 +60,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //writing data to conversion_history db
-    $query = "INSERT INTO conversion_history (pre_type,post_type,pre_amount,post_amount) VALUES (:pre_type,:post_type,:pre_amount,:post_amount)";
+    $query = "INSERT INTO conversion_history (pre_type,post_type,pre_amount,post_amount,users_id) VALUES (:pre_type,:post_type,:pre_amount,:post_amount,:users_id)";
     $dbstmt = $pdo->prepare($query);
 
     $dbstmt->bindParam(":pre_type", $pre_currency);
     $dbstmt->bindParam(":post_type", $post_currency);
     $dbstmt->bindParam(":pre_amount", $amount_of_currency);
     $dbstmt->bindParam(":post_amount", $formatted_total);
+    $dbstmt->bindParam(":users_id", $_SESSION["user_id"]);
 
     $dbstmt->execute();
 

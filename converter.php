@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "Includes/dbh.inc.php";
 
 $query = "SELECT * FROM currency_type;";
@@ -21,7 +22,6 @@ $dbstmt = null;
         <h1>Money Converter</h1>
     </header>
     <div class="container">
-        <a href="/index.php">Login Page</a>
         <form action="Includes/Currency_handler.php" method="post">
             <p>current => converted to</p>
             <select name="pre_currency" id="Currency_type" required>
@@ -43,6 +43,9 @@ $dbstmt = null;
             <input type="text" id="amount" name="amount_of_currency" required>
             <input type="submit" value="Submit">
         </form>
+        <br><a href="/login.php">Log in Here!</a><br>
+        <p>Dont have an account? <a href="/index.php">Create One Here!</a></p><br>
+        <p>Signed into an account?? <a href="/history.php">See Your Conversion history Here!</a></p>
     </div>
 </body>
 
