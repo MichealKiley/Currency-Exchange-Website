@@ -11,7 +11,7 @@ session_start();
 
 <body>
     <h1>Create Account</h1>
-    <a href="/converter.php">Continue without account</a></p>
+    <a href="/converter.php">Continue without account</a>
     <form action="Includes/Login_handler.php" method="post">
         <input type="text" name="username" id="login_textField" placeholder="Enter Username here!" required>
         <input type="password" name="password" id="login_textField" placeholder="Enter password here!" required>

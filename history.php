@@ -1,28 +1,26 @@
 <?php
 session_start();
 
-try {
 
+require_once "Includes/dbh.inc.php";
 
- require_once "Includes/dbh.inc.php";
-
-    $query = "SELECT * FROM conversion_history; WHERE users_id =" . $_SESSION["user_id"] . ";";
+if ($_SESSION["user_id"] != null) {
+    $query = "SELECT * FROM conversion_history WHERE users_id = :users_id;";
     $dbstmt = $pdo->prepare($query);
+    $dbstmt->bindParam(":users_id", $_SESSION["user_id"]);
+
     $dbstmt->execute();
 
     $results = $dbstmt->fetchAll(PDO::FETCH_ASSOC);
 
     $pdo = null;
     $dbstmt = null;
-}catch () {
-    echo "User not signed in!";
+} else {
+    header("Location: login.php");
+    die();
 }
 
-try {
-    //code...
-} catch (\Throwable $th) {
-    //throw $th;
-}
+
 ?>
 
 

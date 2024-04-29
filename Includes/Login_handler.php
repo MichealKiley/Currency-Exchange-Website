@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //connecting file to db and assigning whether the request is a Create or Login
@@ -88,6 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["user_id"] = $user_id;
             $_SESSION["username"] = $username;
         }
+
         $pdo = null;
         $db_stmt = null;
 
