@@ -12,6 +12,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         require_once "dbh.inc.php";
 
+        //clearing db
+        $query = "TRUNCATE TABLE currency_type;";
+        $db_stmt = $pdo->prepare($query);
+        $db_stmt->execute();
+
+        //writing updated info to db
         foreach ($JSON_API_data["conversion_rates"] as $type => $rate) {
             $query = "INSERT INTO currency_type (currency,ex_rate) VALUES (:currency, :rate);";
             $db_stmt = $pdo->prepare($query);

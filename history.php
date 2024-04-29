@@ -40,7 +40,7 @@ if ($_SESSION["user_id"] != null) {
             $conversion_data = array($value["pre_type"], $value["post_type"], $value["pre_amount"], $value["post_amount"], $value["time_of"]);
             echo "<tr>";
             foreach ($conversion_data as $data) {
-                echo "<td>" . $data . "</td>";
+                echo "<td>" . htmlspecialchars($data) . "</td>";
             }
             echo "</tr>";
         }

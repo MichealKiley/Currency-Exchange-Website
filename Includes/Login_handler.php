@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user_exist = false;
 
         //checking db if user already exists
-        $query = ("SELECT username, email FROM users");
+        $query = ("SELECT id, username, email FROM users");
         $db_stmt = $pdo->prepare($query);
 
         $db_stmt->execute();
@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $results = $db_stmt->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($results as $value) {
+            $user_id = $value["id"];
             $username = $value["username"];
             $email = $value["email"];
 
@@ -35,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        //if user does not exist, it enters a nex user into the db
+        //if user does not exist, it enters a new user into the db
         if ($user_exist != true) {
 
             //entering new user into db
@@ -48,10 +49,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $db_stmt->execute();
 
+
+            //creating session for new user
+            $query = ("SELECT id,username From users WHERE username = :username;");
+            $db_stmt = $pdo->prepare($query);
+
+            $db_stmt->bindParam(":username", $user_username);
+            $db_stmt->execute();
+
+            $results = $db_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($results as $value) {
+                $_SESSION["user_id"] = $value["id"];
+                $_SESSION["username"] = $value["username"];
+            }
+
+            header("Location: ../converter.php");
+
             $pdo = null;
             $db_stmt = null;
-
-            echo "User " . $user_username . " has been created!";
 
             die();
         }
@@ -61,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($request_type == "Login") {
 
         //assigning variables
-        $user_email = $_POST["email"];
+        $user_email_password = $_POST["email-password"];
         $user_password = $_POST["password"];
         $user_exist = false;
 
@@ -74,20 +90,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $results = $db_stmt->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($results as $value) {
+            $username = $value["username"];
             $email = $value["email"];
             $pwd = $value["pwd"];
 
-            if ($email == $user_email and $pwd == $user_password) {
+            if ($email == $user_email_password or $username == $user_email_password and $pwd == $user_password) {
                 $username = $value["username"];
                 $user_id = $value["id"];
                 $user_exist = true;
+                break;
             }
         }
 
-        //printing login message if user was found
+        //Creating session for user
         if ($user_exist == true) {
             $_SESSION["user_id"] = $user_id;
             $_SESSION["username"] = $username;
+        } else {
+            echo "User not found!";
+            die();
         }
 
         $pdo = null;

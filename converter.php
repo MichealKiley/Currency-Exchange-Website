@@ -44,8 +44,8 @@ $dbstmt = null;
             <input type="submit" value="Submit">
         </form>
         <br><a href="/login.php">Log in Here!</a><br>
-        <p>Dont have an account? <a href="/index.php">Create One Here!</a></p><br>
-        <p>Signed into an account?? <a href="/history.php">See Your Conversion history Here!</a></p>
+        <p>Dont have an account? <a href="/index.php">Create One Here!</a></p>
+        <p>Signed into an account? <a href="/history.php">See Your Conversion History Here!</a></p>
     </div>
 </body>
 
