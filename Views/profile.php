@@ -1,8 +1,8 @@
 <?php
-session_start();
+require_once "../Config/config.php";
 
 
-if ($_SESSION["user_id"] != null) {
+if (isset($_SESSION["user_id"])) {
 
     //setting variables
     $conversion_stats = [];
@@ -36,7 +36,7 @@ if ($_SESSION["user_id"] != null) {
     $pdo = null;
     $dbstmt = null;
 } else {
-    header("Location: login.php");
+    echo "User not logged in! <br><a href=\"login.php\">Login</a>";
     die();
 }
 ?>

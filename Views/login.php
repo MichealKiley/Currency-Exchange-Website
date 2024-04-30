@@ -1,13 +1,13 @@
 <?php
-session_start();
+require_once "../Config/config.php";
 
 ?>
 
 <body>
-    <header>
+    <!-- <header>
         <a href="profile.php">Profile</a>
         <a href="login.php">Login</a>
-    </header>
+    </header> -->
     <h1>Log Into Account</h1>
     <a href="converter.php">Continue without account</a></p>
     <form action="../Includes/Login_handler.php" method="post">

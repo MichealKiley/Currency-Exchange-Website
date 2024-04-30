@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once "../Config/config.php";
 session_unset();
 session_destroy();
 ?>

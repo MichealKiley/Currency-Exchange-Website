@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once "Config/config.php";
 ?>
 
 <!DOCTYPE html>
@@ -10,10 +10,10 @@ session_start();
 </head>
 
 <body>
-    <header>
+    <!-- <header>
         <a href="Views/profile.php">Profile</a>
         <a href="Views/login.php">Login</a>
-    </header>
+    </header> -->
     <h1>Create Account</h1>
     <a href="Views/converter.php">Continue without account</a>
     <form action="Includes/Login_handler.php" method="post">

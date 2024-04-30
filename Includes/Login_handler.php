@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once "../Config/config.php";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -39,12 +39,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //if user does not exist, it enters a new user into the db
         if ($user_exist != true) {
 
+            //hashing password
+            $hashed_pwd = password_hash($user_password, PASSWORD_BCRYPT, ['cost' => 12]);
+
             //entering new user into db
             $query = ("INSERT INTO users (username, pwd, email) VALUES (:username, :pwd, :email)");
             $db_stmt = $pdo->prepare($query);
 
             $db_stmt->bindParam(":username", $user_username);
-            $db_stmt->bindParam(":pwd", $user_password);
+            $db_stmt->bindParam(":pwd", $hashed_pwd);
             $db_stmt->bindParam(":email", $user_email);
 
             $db_stmt->execute();
@@ -94,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $email = $value["email"];
             $pwd = $value["pwd"];
 
-            if ($email == $user_email_password or $username == $user_email_password and $pwd == $user_password) {
+            if ($email == $user_email_password or $username == $user_email_password and password_verify($user_password, $pwd) == true) {
                 $username = $value["username"];
                 $user_id = $value["id"];
                 $user_exist = true;

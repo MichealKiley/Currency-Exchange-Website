@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once "../Config/config.php";
 
 //locking page unless the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
