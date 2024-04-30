@@ -10,7 +10,7 @@ require_once "../Config/config.php";
     </header> -->
     <h1>Log Into Account</h1>
     <a href="converter.php">Continue without account</a></p>
-    <form action="../Includes/Login_handler.php" method="post">
+    <form action="../Includes/login_handler.php" method="post">
         <input type="text" name="email-password" id="login_textField" placeholder="Username or Email" required>
         <input type="password" name="password" id="login_textField" placeholder="Password" required>
         <input type="submit" name="account_type" value="Login">

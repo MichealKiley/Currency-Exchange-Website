@@ -16,7 +16,7 @@ require_once "Config/config.php";
     </header> -->
     <h1>Create Account</h1>
     <a href="Views/converter.php">Continue without account</a>
-    <form action="Includes/Login_handler.php" method="post">
+    <form action="Includes/login_handler.php" method="post">
         <input type="text" name="username" id="login_textField" placeholder="Enter Username here!" required>
         <input type="password" name="password" id="login_textField" placeholder="Enter password here!" required>
         <input type="text" name="email" id="login_textField" placeholder="Enter email here!" required>

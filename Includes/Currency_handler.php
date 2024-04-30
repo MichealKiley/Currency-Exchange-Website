@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $results = $dbstmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // check for pre and post currency rates and make the conversion
+    // check for pre and post currency rates and make the initial conversion
     foreach ($results as $value) {
         $currency = $value["currency"];
         $rate = $value["ex_rate"];
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    //rounding number to 0.00 format
+    //making final conversion and rounding number to 0.00 format
     $converted_total = $pre_converted_amount * $post_rate;
     $formatted_total = round($converted_total, 2);
 

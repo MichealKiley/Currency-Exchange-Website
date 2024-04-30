@@ -29,7 +29,7 @@ if (isset($_SESSION["user_id"])) {
         <a href="profile.php">Profile</a>
         <a href="login.php">Login</a>
     </header>
-    <h1><?php echo $_SESSION["username"]; ?> Conversion history</h1>
+    <h2><?php echo $_SESSION["username"]; ?> Conversion History</h2>
     <a href="converter.php">Make Conversion</a></p>
     <table>
         <tr>

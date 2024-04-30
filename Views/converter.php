@@ -24,7 +24,7 @@ $dbstmt = null;
     </header>
     <h1>Money Converter</h1>
     <div class="container">
-        <form action="../Includes/Currency_handler.php" method="post">
+        <form action="../Includes/currency_handler.php" method="post">
             <p>current => converted to</p>
             <select name="pre_currency" id="Currency_type" required>
                 <?php
