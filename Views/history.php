@@ -2,7 +2,7 @@
 session_start();
 
 
-require_once "Includes/dbh.inc.php";
+require_once "../Includes/dbh.inc.php";
 
 if ($_SESSION["user_id"] != null) {
     $query = "SELECT * FROM conversion_history WHERE users_id = :users_id;";
@@ -25,8 +25,12 @@ if ($_SESSION["user_id"] != null) {
 
 
 <body>
+    <header>
+        <a href="profile.php">Profile</a>
+        <a href="login.php">Login</a>
+    </header>
     <h1><?php echo $_SESSION["username"]; ?> Conversion history</h1>
-    <a href="/converter.php">Make Conversion</a></p>
+    <a href="converter.php">Make Conversion</a></p>
     <table>
         <tr>
             <td><strong>Original Currency</strong></td>

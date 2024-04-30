@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["username"] = $value["username"];
             }
 
-            header("Location: ../converter.php");
+            header("Location: ../Views/converter.php");
 
             $pdo = null;
             $db_stmt = null;
@@ -114,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pdo = null;
         $db_stmt = null;
 
-        header("Location: ../converter.php");
+        header("Location: ../Views/converter.php");
 
         die();
     }

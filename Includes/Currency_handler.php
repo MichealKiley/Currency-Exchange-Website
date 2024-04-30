@@ -30,34 +30,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $post_rate = $rate;
         }
     }
+
+    //rounding number to 0.00 format
     $converted_total = $pre_converted_amount * $post_rate;
-
-
-    //cutting off the decimal numbers past the first 2 digits
-    $loop_counter = 0;
-    $decimal_bool = false;
-    $formatted_total = 0;
-
-    $total_array = str_split($converted_total);
-    foreach ($total_array as $value) {
-        if ($value == ".") {
-            $decimal_bool = true;
-        }
-        if ($decimal_bool == true and $value != ".") {
-            $loop_counter++;
-        }
-
-        $formatted_total .= $value;
-
-        if ($loop_counter >= 2) {
-            break;
-        }
-    }
-
-    //deleteing leading 0's unless its a number < 1.
-    if ($formatted_total[0] == 0 and $formatted_total[1] != ".") {
-        $formatted_total = ltrim($formatted_total, '0');
-    }
+    $formatted_total = round($converted_total, 2);
 
     //writing data to conversion_history db
     $query = "INSERT INTO conversion_history (pre_type,post_type,pre_amount,post_amount,users_id) VALUES (:pre_type,:post_type,:pre_amount,:post_amount,:users_id)";
@@ -77,5 +53,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     die();
 } else {
-    header("Location: ../converter.php");
+    header("Location: ../Views/converter.php");
 }
