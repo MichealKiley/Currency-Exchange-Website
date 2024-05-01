@@ -1,15 +1,9 @@
 <?php
-require_once "../Config/config.php";
+require_once "../Includes/config_session.inc.php";
+require_once "../Includes/converter_model.inc.php";
+require_once "../Includes/converter_view.inc.php";
 require_once "../Includes/dbh.inc.php";
-
-$query = "SELECT * FROM currency_type;";
-$dbstmt = $pdo->prepare($query);
-$dbstmt->execute();
-
-$results = $dbstmt->fetchAll(PDO::FETCH_ASSOC);
-
-$pdo = null;
-$dbstmt = null;
+get_currency_type($pdo)
 
 ?>
 
@@ -24,29 +18,26 @@ $dbstmt = null;
     </header>
     <h1>Money Converter</h1>
     <div class="container">
-        <form action="../Includes/currency_handler.php" method="post">
+        <form action="../Includes/converter.inc.php" method="post">
             <p>current => converted to</p>
-            <select name="pre_currency" id="Currency_type" required>
+            <select name="pre_currency" id="Currency_type">
                 <?php
-                foreach ($results as $value) {
-                    $option = htmlspecialchars($value["currency"]);
-                    echo "<option value=$option>$option</option>";
-                }
+                display_currency_type();
                 ?>
             </select>
-            <select name="post_currency" id="Currency_type" required>
+            <select name="post_currency" id="Currency_type">
                 <?php
-                foreach ($results as $value) {
-                    $option = htmlspecialchars($value["currency"]);
-                    echo "<option value=$option>$option</option>";
-                }
+                display_currency_type();
                 ?>
             </select>
-            <input type="text" id="amount" name="amount_of_currency" required>
+            <input type="number" id="amount" name="amount_of_currency">
             <input type="submit" value="Submit">
         </form>
         <p>Dont have an account? <a href="../index.php">Create One Here!</a></p>
     </div>
+    <?php
+    errors_on_convert();
+    ?>
 </body>
 
 </html>

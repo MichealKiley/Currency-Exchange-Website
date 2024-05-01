@@ -1,5 +1,6 @@
 <?php
 require_once "Includes/config_session.inc.php";
+require_once "Includes/signup_view.inc.php";
 ?>
 
 <!DOCTYPE html>
@@ -23,10 +24,7 @@ require_once "Includes/config_session.inc.php";
         <input type="submit" name="account_type" value="Create">
     </form>
     <?php
-    if (isset($_SESSION["errors_signup"])) {
-        foreach ($_SESSION["errors_signup"] as $type => $msg)
-            echo "<p style=\"color:red;\">" . $msg . "</p>";
-    }
+    errors_on_signup();
     ?>
     <p>Already have an account? <a href="Views/login.php">Log in Here!</a></p>
 </body>

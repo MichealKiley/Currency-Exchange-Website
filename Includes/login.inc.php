@@ -18,11 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errors["input_errors"] = "Fill in all fields!";
         }
 
-        if (user_exists($pdo, $username, $email)) {
+        if (!user_exists($pdo, $username, $email)) {
             $errors["user_not_exist"] = "Username or Email does not exist!";
         }
 
-        if (user_logged_in($pdo, $username, $pwd, $email)) {
+        if (!credentials_match($pdo, $username, $pwd, $email) and user_exists($pdo, $username, $email)) {
             $errors["pwd_not_valid"] = "Password does not match!";
         }
 
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         // CREATING SESSION IF NO ERRORS
         else {
-            $_SESSION["user_id"] = get_logged_user($pdo, $username);
+            $_SESSION["user_id"] = get_user_id($pdo, $username)["id"];
             header("Location: ../Views/converter.php");
         }
     } catch (PDOException $e) {
