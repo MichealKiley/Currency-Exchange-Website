@@ -34,12 +34,13 @@ function check_for_user(object $pdo, string $username, string $email)
 }
 
 
-function get_user_id(object $pdo, string $username)
+function get_user_info(object $pdo, string $username, string $email)
 {
-    $query = ("SELECT id FROM users WHERE username = :username;");
+    $query = ("SELECT id, username FROM users WHERE username = :username OR email = :email;");
     $db_stmt = $pdo->prepare($query);
 
     $db_stmt->bindPARAM(":username", $username);
+    $db_stmt->bindPARAM(":email", $email);
     $db_stmt->execute();
 
     $results = $db_stmt->fetch(PDO::FETCH_ASSOC);

@@ -13,8 +13,14 @@ get_currency_type($pdo)
 
 <body>
     <header>
-        <a href="profile.php">Profile</a>
-        <a href="login.php">Login</a>
+        <?php
+        if (isset($_SESSION["user_id"])) {
+            echo "<a href=\"profile.php\">" . $_SESSION["username"] . "</a>";
+            echo "<a href=\"logout.php\">Logout</a>";
+        } else {
+            echo "<a href=\"login.php\">Login</a>";
+        }
+        ?>
     </header>
     <h1>Money Converter</h1>
     <div class="container">

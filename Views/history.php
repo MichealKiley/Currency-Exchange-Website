@@ -1,33 +1,28 @@
 <?php
-require_once "../Config/config.php";
-
-
+require_once "../Includes/config_session.inc.php";
+require_once "../Includes/history_view.inc.php";
+require_once "../Includes/history_model.inc.php";
 require_once "../Includes/dbh.inc.php";
 
-if (isset($_SESSION["user_id"])) {
-    $query = "SELECT * FROM conversion_history WHERE users_id = :users_id;";
-    $dbstmt = $pdo->prepare($query);
-    $dbstmt->bindParam(":users_id", $_SESSION["user_id"]);
-
-    $dbstmt->execute();
-
-    $results = $dbstmt->fetchAll(PDO::FETCH_ASSOC);
-
-    $pdo = null;
-    $dbstmt = null;
-} else {
-    echo "User not logged in! <br><a href=\"login.php\">Login</a>";
-    die();
+if (!isset($_SESSION["user_id"])) {
+    header("Location: ../Views/login.php");
+    $_SESSION["errors_login"] = array("error" => "Not signed in!");
 }
-
-
 ?>
 
 
 <body>
     <header>
-        <a href="profile.php">Profile</a>
-        <a href="login.php">Login</a>
+        <?php
+        if (isset($_SESSION["user_id"])) {
+            echo "<a href=\"profile.php\">" . $_SESSION["username"] . "</a>";
+            echo "<a href=\"converter.php\">Converter</a>";
+            echo "<a href=\"logout.php\">Logout</a>";
+        } else {
+            echo "<a href=\"login.php\">Login</a>";
+            echo "<a href=\"converter.php\">Converter</a>";
+        }
+        ?>
     </header>
     <h2><?php echo $_SESSION["username"]; ?> Conversion History</h2>
     <a href="converter.php">Make Conversion</a></p>
@@ -40,14 +35,7 @@ if (isset($_SESSION["user_id"])) {
             <td><strong>Time of Conversion</strong></td>
         </tr>
         <?php
-        foreach ($results as $value) {
-            $conversion_data = array($value["pre_type"], $value["post_type"], $value["pre_amount"], $value["post_amount"], $value["time_of"]);
-            echo "<tr>";
-            foreach ($conversion_data as $data) {
-                echo "<td>" . htmlspecialchars($data) . "</td>";
-            }
-            echo "</tr>";
-        }
+        show_conversion_history(get_conversion_history($pdo));
         ?>
     </table>
 </body>

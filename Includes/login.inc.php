@@ -34,7 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         // CREATING SESSION IF NO ERRORS
         else {
-            $_SESSION["user_id"] = get_user_id($pdo, $username)["id"];
+            $_SESSION["user_id"] = get_user_info($pdo, $username, $email)["id"];
+            $_SESSION["username"] = get_user_info($pdo, $username, $email)["username"];;
+
             header("Location: ../Views/converter.php");
         }
     } catch (PDOException $e) {

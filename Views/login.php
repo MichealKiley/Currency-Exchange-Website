@@ -5,10 +5,6 @@ require_once "../Includes/login_view.inc.php";
 ?>
 
 <body>
-    <!-- <header>
-        <a href="profile.php">Profile</a>
-        <a href="login.php">Login</a>
-    </header> -->
     <h1>Log Into Account</h1>
     <a href="converter.php">Continue without account</a></p>
     <form action="../Includes/login.inc.php" method="post">
