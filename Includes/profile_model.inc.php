@@ -8,7 +8,6 @@ function get_profile_data($pdo)
     $dbstmt = $pdo->prepare($query);
 
     $dbstmt->bindParam(":users_id", $_SESSION["user_id"]);
-
     $dbstmt->execute();
 
     $results = $dbstmt->fetchAll(PDO::FETCH_ASSOC);

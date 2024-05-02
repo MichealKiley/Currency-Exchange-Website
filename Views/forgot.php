@@ -5,10 +5,9 @@ require_once "../Includes/pass_reset_view.inc.php";
 ?>
 
 <body>
-    <h1>Reset Password</h1>
+    <h1>Forgot Password</h1>
     <form action="../Includes/forgot.inc.php" method="post">
-        <input type="password" name="new_pwd_1" id="login_textField" placeholder="New Password">
-        <input type="password" name="new_pwd_2" id="login_textField" placeholder="Confirm Password">
+        <input type="text" name="email-username" id="login_textField" placeholder="Username or Email">
         <input type="submit" value="Reset">
     </form>
     <?php

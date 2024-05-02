@@ -1,7 +1,7 @@
 <?php
 
-//locking page unless the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+function populate_currency_type_db()
+{
 
     //making api call
     $API_url = "https://v6.exchangerate-api.com/v6/0859bc49c275b17813cc3714/latest/USD";
@@ -35,6 +35,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } catch (PDOException $e) {
         die("Query Failed: " . $e->getMessage());
     }
-} else {
-    header("Location: ../index.php");
 }

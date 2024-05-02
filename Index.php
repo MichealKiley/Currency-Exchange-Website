@@ -21,7 +21,7 @@ require_once "Includes/signup_view.inc.php";
         <input type="text" name="username" id="login_textField" placeholder="Enter Username here!" required>
         <input type="password" name="password" id="login_textField" placeholder="Enter password here!" required>
         <input type="text" name="email" id="login_textField" placeholder="Enter email here!" required>
-        <input type="submit" name="account_type" value="Create">
+        <input type="submit" value="Create">
     </form>
     <?php
     errors_on_signup();
