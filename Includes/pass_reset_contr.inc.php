@@ -1,11 +1,13 @@
 <?php
 
+//links to forgot.inc.php, verify.inc.php, and reset.inc.php
+
 declare(strict_types=1);
 
 
-function is_input_empty(string $username, string $email)
+function is_input_empty(string $input1, string $input2)
 {
-    if (empty($username) or empty($email)) {
+    if (empty($input1) or empty($input2)) {
         return true;
     } else {
         return false;

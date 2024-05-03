@@ -1,5 +1,7 @@
 <?php
 
+//links to forgot.inc.php, verify.inc.php, and reset.inc.php
+
 declare(strict_types=1);
 
 function check_user_email(object $pdo, string $username, string $email)
@@ -16,8 +18,21 @@ function check_user_email(object $pdo, string $username, string $email)
     return $results;
 }
 
-// function check_verification(object $pdo)
-// {
-//     if ()
-//     $query = "SELECT "
-// }
+function update_db_post_reset($pdo, $new_password)
+{
+    //update password
+    $query = "UPDATE users SET pwd = :new_pass WHERE id = :id;";
+    $db_stmt = $pdo->prepare($query);
+
+    $db_stmt->bindPARAM(":new_pass", $new_password);
+    $db_stmt->bindPARAM(":id", $_SESSION["reset_user_id"]);
+    $db_stmt->execute();
+
+
+    //update verify codes db
+    $query = "UPDATE verify_codes SET users_id = NULL WHERE users_id = :id;";
+    $db_stmt = $pdo->prepare($query);
+
+    $db_stmt->bindPARAM(":id", $_SESSION["reset_user_id"]);
+    $db_stmt->execute();
+}

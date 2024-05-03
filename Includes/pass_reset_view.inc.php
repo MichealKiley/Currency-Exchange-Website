@@ -1,5 +1,7 @@
 <?php
 
+//links to forgot.inc.php, verify.inc.php, and reset.inc.php
+
 declare(strict_types=1);
 
 function errors_on_reset()

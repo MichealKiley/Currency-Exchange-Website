@@ -2,6 +2,10 @@
 require_once "../Includes/config_session.inc.php";
 require_once "../Includes/pass_reset_view.inc.php";
 
+if (!isset($_SESSION["reset_user_email"])) {
+    header("Location: forgot.php");
+}
+
 ?>
 
 <body>
