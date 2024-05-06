@@ -1,5 +1,5 @@
 <?php
-require_once "../Includes/config_session.inc.php";
+require_once "../config_session.inc.php";
 
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -8,8 +8,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 function send_verify_code_email($pdo)
 {
     if (isset($_SESSION["reset_user_email"])) {
-        require_once "../Includes/dbh.inc.php";
-        require "../vendor/autoload.php";
+        require_once "../dbh.inc.php";
+        require "../../vendor/autoload.php";
 
         //getting verif code
         $query = "SELECT id,codes FROM verify_codes WHERE users_id is NULL;";

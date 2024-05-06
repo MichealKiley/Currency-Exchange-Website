@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pwd = $_POST["password"];
 
     try {
-        require_once "dbh.inc.php";
+        require_once "../dbh.inc.php";
         require_once "login_model.inc.php";
         require_once "login_contr.inc.php";
 
@@ -26,18 +26,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errors["pwd_not_valid"] = "Password does not match!";
         }
 
-        require_once "./config_session.inc.php";
+        require_once "../config_session.inc.php";
 
         if ($errors) {
             $_SESSION["errors_login"] = $errors;
-            header("Location: ../Views/login.php");
+            header("Location: /Views/login.php");
         }
         // CREATING SESSION IF NO ERRORS
         else {
             $_SESSION["user_id"] = get_user_info($pdo, $username, $email)["id"];
             $_SESSION["username"] = get_user_info($pdo, $username, $email)["username"];;
 
-            header("Location: ../Views/converter.php");
+            header("Location: /Views/converter.php");
         }
     } catch (PDOException $e) {
         die("Query Failed: " . $e->getMessage());

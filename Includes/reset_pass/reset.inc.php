@@ -5,10 +5,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     $pwd_2 = $_POST["new_pwd_2"];
 
     try {
-        require_once "./config_session.inc.php";
-        require_once "./pass_reset_contr.inc.php";
-        require_once "./pass_reset_model.inc.php";
-        require_once "./dbh.inc.php";
+        require_once "../config_session.inc.php";
+        require_once "pass_reset_contr.inc.php";
+        require_once "pass_reset_model.inc.php";
+        require_once "../dbh.inc.php";
 
         $errors = [];
 
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         }
 
         if ($errors) {
-            header("Location: ../Views/reset.php");
+            header("Location: /Views/reset.php");
             $_SESSION["errors_reset"] = $errors;
         } else {
 
@@ -34,12 +34,12 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             unset($_SESSION["reset_user_email"]);
             unset($_SESSION["reset_user_username"]);
 
-            header("Location: ../Views/login.php");
+            header("Location: /Views/login.php");
         }
     } catch (Exception $e) {
         die("Query Failed: " . $e->getMessage());
     }
 } else {
-    header("Location: ../Views/login.php");
+    header("Location: ./login.php");
     die();
 }

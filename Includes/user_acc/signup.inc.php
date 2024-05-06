@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
 
     try {
-        require_once "dbh.inc.php";
+        require_once "../dbh.inc.php";
         require_once "signup_model.inc.php";
         require_once "signup_contr.inc.php";
 
@@ -27,16 +27,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errors["email_used"] = "Email already registered!";
         }
 
-        require_once "./config_session.inc.php";
+        require_once "../config_session.inc.php";
 
         if ($errors) {
             $_SESSION["errors_signup"] = $errors;
-            header("Location: ../index.php");
+            header("Location: /../index.php");
         }
         // MAKING USER IF NO ERRORS
         else {
             create_user($pdo, $username, $pwd, $email);
-            header("Location: ../Views/login.php");
+            header("Location: /Views/login.php");
         }
     } catch (PDOException $e) {
         die("Query Failed: " . $e->getMessage());

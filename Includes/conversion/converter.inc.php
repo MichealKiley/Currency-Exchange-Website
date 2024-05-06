@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     try {
-        require_once "dbh.inc.php";
+        require_once "../dbh.inc.php";
         require_once "converter_model.inc.php";
         require_once "converter_contr.inc.php";
         require_once "converter_view.inc.php";
@@ -21,11 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errors["input_errors"] = "Fill in all fields!";
         }
 
-        require_once "./config_session.inc.php";
+        require_once "../config_session.inc.php";
 
         if ($errors) {
             $_SESSION["errors_converter"] = $errors;
-            header("Location: ../Views/converter.php");
+            header("Location: /Views/converter.php");
         } else {
             make_conversion($pre_currency, $post_currency, $amount_of_currency);
             post_conversion_history($pdo, $pre_currency, $post_currency, $amount_of_currency);

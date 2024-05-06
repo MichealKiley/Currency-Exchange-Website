@@ -1,7 +1,8 @@
 <?php
 require_once "../Includes/config_session.inc.php";
-require_once "../Includes/profile_view.inc.php";
-require_once "../Includes/profile_model.inc.php";
+require_once "../Includes/general_view.php";
+require_once "../Includes/user_acc/profile_view.inc.php";
+require_once "../Includes/user_acc/profile_model.inc.php";
 require_once "../Includes/dbh.inc.php";
 
 if (!isset($_SESSION["user_id"])) {
@@ -20,13 +21,7 @@ if (!isset($_SESSION["user_id"])) {
 <body>
     <header>
         <?php
-        if (isset($_SESSION["user_id"])) {
-            echo "<a href=\"converter.php\">Converter</a>";
-            echo "<a href=\"logout.php\">Logout</a>";
-        } else {
-            echo "<a href=\"login.php\">Login</a>";
-            echo "<a href=\"converter.php\">Converter</a>";
-        }
+        user_view();
         ?>
     </header>
     <h1>Account Details</h1>
