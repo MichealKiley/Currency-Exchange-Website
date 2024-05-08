@@ -5,19 +5,49 @@ require_once "../Includes/general_view.php";
 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+
 <body>
-    <h1>Log Into Account</h1>
-    <a href="converter.php">Continue without account</a></p>
-    <form action="../Includes/user_acc/login.inc.php" method="post">
-        <input type="text" name="email-username" id="login_textField" placeholder="Username or Email">
-        <input type="password" name="password" id="login_textField" placeholder="Password">
-        <input type="submit" value="Login">
-    </form>
-    <?php
-    errors_on_login();
-    ?>
-    <p>Forgot Password? <a href="forgot.php">Reset Here!</a></p>
-    <p>Dont have an account? <a href="../index.php">Create One Here!</a></p>
+    <div class="wrapper">
+        <h1>Login</h1>
+        <div class="text-form">
+            <form action="../Includes/user_acc/login.inc.php" method="post">
+                <div class="text-field">
+                    <input type="text" name="email-username" placeholder="Username or Email">
+                    <i class='bx bxs-user-circle' id="icon-right"></i>
+                </div>
+                <div class="text-field">
+                    <input type="password" name="password" placeholder="Password">
+                    <i class='bx bxs-key' id="icon-right"></i>
+                </div>
+
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </div>
+        <div class="errors">
+            <?php
+            errors_on_login();
+            user_signup_on_login();
+            ?>
+        </div>
+        <div class="link-to-page">
+            <p>Forgot Password? <a href="forgot.php">Reset Here!</a></p>
+            <p>Want to continue? <a href="converter.php">Converter</a></p>
+            <p>Dont have an account? <a href="../index.php">Create One Here!</a></p>
+        </div>
+    </div>
 </body>
 
 </html>

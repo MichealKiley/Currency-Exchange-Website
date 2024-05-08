@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         else {
             create_user($pdo, $username, $pwd, $email);
             header("Location: /Views/login.php");
+            $_SESSION["user_signup"] = "User " . $username . " has been created!";
         }
     } catch (PDOException $e) {
         die("Query Failed: " . $e->getMessage());

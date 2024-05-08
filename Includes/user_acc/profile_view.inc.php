@@ -5,9 +5,17 @@ declare(strict_types=1);
 function display_profile_data(array $results)
 {
     foreach ($results as $value) {
-        echo "<li>Username: " . $value["username"] . "</li>";
-        echo "<li>Email: " . $value["email"] . "</li>";
-        echo "<li>Date Created: " . $value["created_at"] . "</li>";
-        echo "<li><a href=\"history.php\">Conversion History</a></li>";
+        echo "<div class=\"list-items\">";
+        echo "<label>Username</label>";
+        echo "<p>" . $value["username"] . "<p>";
+        echo "</div>";
+        echo "<div class=\"list-items\">";
+        echo "<label>Email</label>";
+        echo "<p>" . $value["email"] . "</p>";
+        echo "</div>";
+        echo "<div class=\"list-items\">";
+        echo "<label>Date Created</label>";
+        echo "<p>" . $value["created_at"] . "</p>";
+        echo "</div>";
     }
 }
