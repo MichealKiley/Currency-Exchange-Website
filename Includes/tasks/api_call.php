@@ -17,6 +17,14 @@ function populate_currency_type_db()
         $db_stmt = $pdo->prepare($query);
         $db_stmt->execute();
 
+        // if (($open = fopen("currency_symbol.csv", "r")) !== false) {
+        //     while (($data = fgetcsv($open, 1000, ",")) !== false) {
+        //         $symbols[] = $data;
+        //     }
+
+        //     fclose($open);
+        // }
+
         //writing updated info to db
         foreach ($JSON_API_data["conversion_rates"] as $type => $rate) {
             $query = "INSERT INTO currency_type (currency,ex_rate) VALUES (:currency, :rate);";

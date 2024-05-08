@@ -20,14 +20,27 @@ require_once "../Includes/general_view.php";
 </head>
 
 <body>
-    <h1>Forgot Password</h1>
-    <form action="../Includes/reset_pass/forgot.inc.php" method="post">
-        <input type="text" name="email-username" id="login_textField" placeholder="Username or Email">
-        <input type="submit" value="Reset">
-    </form>
     <?php
-    errors_on_reset();
+    user_view()
     ?>
+    <div class="wrapper">
+        <h1>Forgot Password</h1>
+        <div class="text-form">
+            <form action="../Includes/reset_pass/forgot.inc.php" method="post">
+                <div class="text-field">
+                    <input type="text" name="email-username" id="login_textField" placeholder="Username or Email">
+                </div>
+
+                <button type="submit" class="btn">Reset</button>
+            </form>
+        </div>
+        <div class="errors">
+            <?php
+            errors_on_reset();
+            verif_code_expired()
+            ?>
+        </div>
+    </div>
 </body>
 
 </html>

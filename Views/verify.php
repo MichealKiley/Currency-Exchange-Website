@@ -24,15 +24,29 @@ if (!isset($_SESSION["reset_user_email"])) {
 </head>
 
 <body>
-    <h1>Verify Account</h1>
-    <p>A verification code was sent to <?php echo $_SESSION["reset_user_email"] ?>...</p>
-    <form action="../Includes/reset_pass/verify.inc.php" method="post">
-        <input type="text" name="verification_code" id="login_textField" placeholder="6 digit code"><br>
-        <input type="submit" value="Verify">
-    </form>
     <?php
-    errors_on_reset();
+    user_view()
     ?>
+    <div class="wrapper">
+        <h1>Verify Account</h1>
+        <h3>A verification code was sent to <?php echo $_SESSION["reset_user_email"] ?>...</h3>
+        <div class="text-form">
+            <form action="../Includes/reset_pass/verify.inc.php" method="post">
+                <div class="text-field">
+                    <input type="text" name="verification_code" id="login_textField" placeholder="6 digit code">
+                    <i class='bx bxs-lock-open' id="icon-right"></i>
+                </div>
+
+                <button type="submit" class="btn">Verify</button>
+            </form>
+        </div>
+        <div class="errors">
+            <?php
+            errors_on_reset();
+            verif_code_expired()
+            ?>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -24,8 +24,11 @@ get_currency_type($pdo)
 </head>
 
 <body>
+    <?php
+    user_view()
+    ?>
     <div class="wrapper">
-        <h2>Money Converter</h2>
+        <h1>Money Converter</h1>
         <div class="text-form">
             <form action="../Includes/conversion/converter.inc.php" method="post">
                 <div class="select-field">
@@ -51,6 +54,11 @@ get_currency_type($pdo)
 
                 <button type="submit" class="btn">Convert</button>
             </form>
+        </div>
+        <div class="conversion-sum">
+            <?php
+            show_conversion_amount()
+            ?>
         </div>
         <div class="errors">
             <?php

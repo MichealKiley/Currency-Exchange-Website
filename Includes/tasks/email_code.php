@@ -48,5 +48,7 @@ function send_verify_code_email($pdo)
         $mail->Body = "Your one time verification code is: " . $_SESSION["reset_user_code"];
 
         $mail->send();
+
+        $_SESSION["verif_code_timer"] = time();
     }
 }

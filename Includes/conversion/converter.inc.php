@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             make_conversion($pre_currency, $post_currency, $amount_of_currency);
             post_conversion_history($pdo, $pre_currency, $post_currency, $amount_of_currency);
-            echo $_SESSION["converted_total"];
+            header("Location: /Views/converter.php");
         }
     } catch (PDOException $e) {
         die("Query Failed: " . $e->getMessage());

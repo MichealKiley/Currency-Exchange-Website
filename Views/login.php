@@ -1,6 +1,7 @@
 <?php
 require_once "../Includes/config_session.inc.php";
 require_once "../Includes/user_acc/login_view.inc.php";
+require_once "../Includes/reset_pass/pass_reset_view.inc.php";
 require_once "../Includes/general_view.php";
 
 ?>
@@ -40,6 +41,8 @@ require_once "../Includes/general_view.php";
             <?php
             errors_on_login();
             user_signup_on_login();
+            pass_changed_on_login();
+            verif_code_expired()
             ?>
         </div>
         <div class="link-to-page">

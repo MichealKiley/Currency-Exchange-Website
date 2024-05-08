@@ -27,24 +27,28 @@ if (!isset($_SESSION["user_id"])) {
 </head>
 
 <body>
-    <header>
-        <?php
-        user_view();
-        ?>
-    </header>
-    <h2><?php echo $_SESSION["username"]; ?> Conversion History</h2>
-    <table>
-        <tr>
-            <td><strong>Original Currency</strong></td>
-            <td><strong>Converted Currency</strong></td>
-            <td><strong>Starting Amount</strong></td>
-            <td><strong>Converted Amount</strong></td>
-            <td><strong>Time of Conversion</strong></td>
-        </tr>
-        <?php
-        show_conversion_history(get_conversion_history($pdo));
-        ?>
-    </table>
+    <?php
+    user_view();
+    ?>
+    <div class="table-wrapper">
+        <h1><?php echo ucfirst($_SESSION["username"]); ?> Conversion History</h1>
+        <table class="history-table">
+            <thead>
+                <tr>
+                    <th>Original Currency</th>
+                    <th>Converted Currency</th>
+                    <th>Starting Amount</th>
+                    <th>Converted Amount</th>
+                    <th>Time of Conversion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                show_conversion_history(get_conversion_history($pdo));
+                ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>

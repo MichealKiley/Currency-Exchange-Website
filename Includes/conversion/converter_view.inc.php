@@ -22,3 +22,15 @@ function errors_on_convert()
         unset($_SESSION["errors_converter"]);
     }
 }
+
+function show_conversion_amount()
+{
+    if (isset($_SESSION["converted_total"])) {
+        $num = (float)$_SESSION["converted_total"];
+        $formatted_num = number_format($num, 2);
+
+        echo "<i class='bx bxs-bank' id=\"icon-money\"></i>";
+        echo "<h2>" . $formatted_num . "</h2>";
+    }
+    unset($_SESSION["converted_total"]);
+}

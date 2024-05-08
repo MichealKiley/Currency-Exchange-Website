@@ -26,6 +26,9 @@ if (!isset($_SESSION["user_id"])) {
 </head>
 
 <body>
+    <?php
+    user_view()
+    ?>
     <div class="wrapper">
         <h1>Account Details</h1>
         <div class="list">

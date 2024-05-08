@@ -25,3 +25,10 @@ if (!isset($_SESSION["last_regeneration"])) {
         $_SESSION["last_regeneration"] = time();
     }
 }
+
+if (isset($_SESSION["verif_code_timer"])) {
+    $code_timer = 60 * 5;
+    if (time() - $_SESSION["verif_code_timer"] >= $code_timer) {
+        $_SESSION["verif_code_expired"] = "Took too long to verify, session expired!";
+    }
+}

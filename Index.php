@@ -1,6 +1,7 @@
 <?php
 require_once "Includes/config_session.inc.php";
 require_once "Includes/user_acc/signup_view.inc.php";
+require_once "Includes/general_view.php";
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +32,10 @@ require_once "Includes/user_acc/signup_view.inc.php";
                     <i class='bx bxs-key' id="icon-right"></i>
                 </div>
                 <div class="text-field">
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                    <i class='bx bxs-key' id="icon-right"></i>
+                </div>
+                <div class="text-field">
                     <input type="text" name="email" placeholder="Email" required>
                     <i class='bx bxs-envelope' id="icon-right"></i>
                 </div>
@@ -41,6 +46,7 @@ require_once "Includes/user_acc/signup_view.inc.php";
         <div class="errors">
             <?php
             errors_on_signup();
+            verif_code_expired()
             ?>
         </div>
         <div class="link-to-page">

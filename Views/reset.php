@@ -20,15 +20,32 @@ require_once "../Includes/general_view.php";
 </head>
 
 <body>
-    <h1>Reset Password</h1>
-    <form action="../Includes/reset_pass/reset.inc.php" method="post">
-        <input type="password" name="new_pwd_1" id="login_textField" placeholder="New Password">
-        <input type="password" name="new_pwd_2" id="login_textField" placeholder="Confirm Password">
-        <input type="submit" value="Reset">
-    </form>
     <?php
-    errors_on_reset();
+    user_view()
     ?>
+    <div class="wrapper">
+        <h1>Reset Password</h1>
+        <div class="text-form">
+            <form action="../Includes/reset_pass/reset.inc.php" method="post">
+                <div class="text-field">
+                    <input type="password" name="new_pwd_1" id="login_textField" placeholder="New Password">
+                    <i class='bx bxs-user-circle' id="icon-right"></i>
+                </div>
+                <div class="text-field">
+                    <input type="password" name="new_pwd_2" id="login_textField" placeholder="Confirm Password">
+                    <i class='bx bxs-user-circle' id="icon-right"></i>
+                </div>
+
+                <button type="submit" class="btn">Reset</button>
+            </form>
+        </div>
+        <div class="errors">
+            <?php
+            errors_on_reset();
+            verif_code_expired()
+            ?>
+        </div>
+    </div>
 </body>
 
 </html>

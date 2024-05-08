@@ -20,12 +20,12 @@ session_destroy();
 </head>
 
 <body>
-    <header>
-        <?php
-        user_view();
-        ?>
-    </header>
-    <h1>You have been logged out</h1>
+    <?php
+    user_view()
+    ?>
+    <div class="wrapper">
+        <h1>User logged out!</h1>
+    </div>
 </body>
 
 </html>

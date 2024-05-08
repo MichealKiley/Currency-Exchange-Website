@@ -27,14 +27,17 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
             $_SESSION["errors_reset"] = $errors;
         } else {
 
-            update_db_post_reset($pdo, $new_password);
+            update_users_db_post_reset($pdo, $new_password);
+            update_verif_db_post_reset($pdo);
 
             unset($_SESSION["reset_user_code"]);
             unset($_SESSION["reset_user_id"]);
             unset($_SESSION["reset_user_email"]);
             unset($_SESSION["reset_user_username"]);
+            unset($_SESSION["verif_code_timer"]);
 
             header("Location: /Views/login.php");
+            $_SESSION["pass_changed"] = "Password Changed";
         }
     } catch (Exception $e) {
         die("Query Failed: " . $e->getMessage());

@@ -4,6 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $username = $_POST["username"];
     $pwd = $_POST["password"];
+    $confirm_pwd = $_POST["confirm_password"];
     $email = $_POST["email"];
 
     try {
@@ -16,6 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (is_input_empty($username, $pwd, $email)) {
             $errors["input_errors"] = "Fill in all fields!";
+        }
+        if ($pwd != $confirm_pwd) {
+            $errors["wrong_pass"] = "Passwords do not match!";
         }
         if (is_email_invalid($email)) {
             $errors["invalid_email"] = "Email isn't valid!";

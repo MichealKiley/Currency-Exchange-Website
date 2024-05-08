@@ -12,29 +12,42 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 75vh;
     flex-direction: column;
 }
 
 .wrapper {
+    margin-top: 20vh;
     width: 450px;
     text-align: center;
 }
 
-.wrapper h1 {
+.table-wrapper {
+    margin-top: 10vh;
+    width: 700px;
+    text-align: left;
+}
+
+h1 {
     font-size: 45px;
     color: lightgreen;
     text-align: center;
 }
 
-.wrapper h2 {
-    font-size: 45px;
-    color: lightgreen;
+h2 {
+    font-size: 35px;
+    color: forestgreen;
+    text-align: center;
+}
+
+h3 {
+    margin: 20px;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
     text-align: center;
 }
 
 
-.wrapper a {
+a {
     color: rgb(49, 189, 49);
 }
 
@@ -82,6 +95,11 @@ body {
     color: rgb(6, 79, 6);
 }
 
+#icon-money {
+    font-size: 25px;
+    color: rgb(6, 79, 6);
+}
+
 .wrapper .btn {
     width: 40%;
     height: 35px;
@@ -92,6 +110,10 @@ body {
     border-radius: 10px;
     background-color: lightgreen;
     color: white;
+}
+
+.btn:hover {
+    background-color: rgb(122, 216, 122);
 }
 
 .wrapper .errors {
@@ -165,4 +187,76 @@ body {
     font-size: 17px;
     margin: 10px;
 }
+
+.wrapper .conversion-sum {
+    position: relative;
+    width: 100%;
+    margin: 25px 0;
+    border-radius: 25px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navbar{
+    width: 100%;
+    height: 30px;
+}
+
+
+.navbar ul{
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+    align-items: center;
+}
+
+.navbar a{
+    color: forestgreen;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    text-align: center;
+    font-size: 17px;
+}
+
+.navbar a:hover{
+    background-color: rgb(239, 238, 238);
+}
+
+.navbar li{
+    float: left;
+}
+
+.table-wrapper .history-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 17px;
+    min-width: 600px;
+}
+
+.history-table thead tr {
+    color: forestgreen;
+    background-color: lightgreen;
+    text-align: left;
+    font-weight: bold;
+}
+
+.history-table tbody tr:nth-of-type(even) {
+    background-color: rgb(240, 240, 240);
+}
+
+.history-table tbody tr:last-of-type {
+    border-bottom: 5px solid lightgreen;
+}
+
+.history-table td {
+    padding: 9px;
+}
+
+.history-table th {
+    padding: 7px;
+}
+
+
 
