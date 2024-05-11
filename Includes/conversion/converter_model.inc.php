@@ -30,5 +30,6 @@ function post_conversion_history(object $pdo, string $pre_currency, string $post
     $dbstmt->bindParam(":post_amount", $_SESSION["converted_total"]);
     $dbstmt->bindParam(":users_id", $_SESSION["user_id"]);
 
+
     $dbstmt->execute();
 }

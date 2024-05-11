@@ -13,6 +13,11 @@ function show_conversion_history(array $results)
             if ($key == "pre_amount" or $key == "post_amount") {
                 $data = number_format($data, 2);
             }
+
+            if ($key == "time_of") {
+                $data = date("F j, Y, g:i a", strtotime($data));
+            }
+
             echo "<td>" . $data . "</td>";
         }
         echo "</tr>";

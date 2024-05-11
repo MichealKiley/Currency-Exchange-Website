@@ -48,7 +48,7 @@ get_currency_type($pdo)
                 <label id="amt-to">Amount to Convert</label>
                 <div class="number-field">
                     <i class='bx bxs-dollar-circle' id="icon-left"></i>
-                    <input type="number" name="amount_of_currency">
+                    <input type="number" step="0.01" name="amount_of_currency">
                 </div>
 
 

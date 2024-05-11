@@ -31,7 +31,7 @@ if (!isset($_SESSION["user_id"])) {
     user_view();
     ?>
     <div class="table-wrapper">
-        <h1><?php echo ucfirst($_SESSION["username"]); ?> Conversion History</h1>
+        <h1>Conversion History</h1>
         <table class="history-table">
             <thead>
                 <tr>
