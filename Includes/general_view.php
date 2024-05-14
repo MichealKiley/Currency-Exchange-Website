@@ -8,6 +8,7 @@ function user_view()
             <ul>
                 <li><a href="profile.php"><?php echo ucfirst($_SESSION["username"]); ?></a></li>
                 <li><a href="converter.php">Make Conversion</a></li>
+                <li><a href="rate_search.php">Rate History</a></li>
                 <li><a href="logout.php">Logout</a></li>
             </ul>
         </nav>
@@ -18,6 +19,7 @@ function user_view()
             <ul>
                 <li><a href="login.php">Login</a></li>
                 <li><a href="converter.php">Make Conversion</a></li>
+                <li><a href="rate_search.php">Rate History</a></li>
             </ul>
         </nav>
 <?php

@@ -1,11 +1,10 @@
 <?php
 
-function populate_verif_codes_db()
+function populate_verif_codes_db($pdo)
 {
-    require_once "../Includes/dbh.inc.php";
 
     //clearing existing codes
-    $query = "TRUNCATE TABLE verify_codes";
+    $query = "TRUNCATE TABLE verify_codes;";
     $db_stmt = $pdo->prepare($query);
     $db_stmt->execute();
 

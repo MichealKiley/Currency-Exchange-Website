@@ -13,6 +13,7 @@ session_set_cookie_params([
 
 session_start();
 
+// cookie generation
 if (!isset($_SESSION["last_regeneration"])) {
 
     session_regenerate_id(true);
@@ -26,9 +27,34 @@ if (!isset($_SESSION["last_regeneration"])) {
     }
 }
 
+
+// verif code timer
 if (isset($_SESSION["verif_code_timer"])) {
     $code_timer = 60 * 5;
     if (time() - $_SESSION["verif_code_timer"] >= $code_timer) {
         $_SESSION["verif_code_expired"] = "Took too long to verify, session expired!";
+    }
+}
+
+
+//exrate and verif codes timer
+if (!isset($_SESSION["exrate_and_codes_timer"])) {
+    $_SESSION["exrate_and_codes_timer"] = time();
+}
+
+if (isset($_SESSION["exrate_and_codes_timer"])) {
+    $api_timer = 60 * 60 * 24;
+
+    if (time() - $_SESSION["exrate_and_codes_timer"] >= $api_timer) {
+        require_once "tasks/api_call.php";
+        require_once "tasks/verif_codes.php";
+        require_once "dbh.inc.php";
+
+        populate_currency_type_db($pdo);
+        populate_rate_history_db($pdo);
+        populate_verif_codes_db($pdo);
+
+        unset($_SESSION["exrate_and_codes_timer"]);
+        header("Refresh:0");
     }
 }

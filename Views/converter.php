@@ -21,6 +21,7 @@ get_currency_type($pdo)
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../css/main.css">
+    <script src="../Js/converter.js"></script>
 </head>
 
 <body>
@@ -48,7 +49,7 @@ get_currency_type($pdo)
                 <label id="amt-to">Amount to Convert</label>
                 <div class="number-field">
                     <i class='bx bxs-dollar-circle' id="icon-left"></i>
-                    <input type="number" step="0.01" name="amount_of_currency">
+                    <input type="number" onchange="setTwoNumberDecimal" step="0.01" name="amount_of_currency">
                 </div>
 
 
