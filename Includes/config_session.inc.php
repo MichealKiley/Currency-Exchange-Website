@@ -16,12 +16,23 @@ session_start();
 // cookie generation
 if (!isset($_SESSION["last_regeneration"])) {
 
+    // refresh verif codes and rate history db's
+    require_once "tasks/api_call.php";
+    require_once "tasks/verif_codes.php";
+    require_once "dbh.inc.php";
+
+    populate_currency_type_db($pdo);
+    populate_rate_history_db($pdo);
+    populate_verif_codes_db($pdo);
+
+    //generating cookie
     session_regenerate_id(true);
     $_SESSION["last_regeneration"] = time();
 } else {
     $interval = 60 * 30;
     if (time() - $_SESSION["last_regeneration"] >= $interval) {
 
+        // generating new cookie after 30 mins
         session_regenerate_id(true);
         $_SESSION["last_regeneration"] = time();
     }
@@ -35,13 +46,3 @@ if (isset($_SESSION["verif_code_timer"])) {
         $_SESSION["verif_code_expired"] = "Took too long to verify, session expired!";
     }
 }
-
-
-// refresh verif codes and rate history db's
-require_once "tasks/api_call.php";
-require_once "tasks/verif_codes.php";
-require_once "dbh.inc.php";
-
-populate_currency_type_db($pdo);
-populate_rate_history_db($pdo);
-populate_verif_codes_db($pdo);
