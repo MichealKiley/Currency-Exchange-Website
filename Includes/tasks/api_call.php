@@ -18,6 +18,7 @@ function populate_currency_type_db($pdo)
 
         $results = $db_stmt->fetch(PDO::FETCH_ASSOC);
 
+
         if ($results["time_of"] != date("Y-m-d")) {
 
             //clearing db

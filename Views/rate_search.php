@@ -1,7 +1,10 @@
 <?php
-require_once "../Includes/exchange_history/rate_history_view.inc.php";
 require_once "../Includes/config_session.inc.php";
 require_once "../Includes/general_view.php";
+require_once "../Includes/exchange_history/rate_history_view.inc.php";
+require_once "../Includes/exchange_history/rate_history_model.inc.php";
+require_once "../Includes/dbh.inc.php";
+
 
 ?>
 
@@ -32,7 +35,7 @@ require_once "../Includes/general_view.php";
                     <label>Currency Type</label>
                     <select name="currency_history_choice">
                         <?php
-                        display_currency_type();
+                        display_currency_type(get_currency_type($pdo));
                         ?>
                     </select>
                 </div>

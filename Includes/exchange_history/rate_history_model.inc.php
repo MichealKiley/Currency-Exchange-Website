@@ -14,3 +14,20 @@ function get_rate_history(object $pdo)
 
     return $results;
 }
+
+function get_currency_type(object $pdo)
+{
+    $currency_data = [];
+
+    $query = "SELECT currency,ex_rate FROM currency_type;";
+    $dbstmt = $pdo->prepare($query);
+    $dbstmt->execute();
+
+    $results = $dbstmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($results as $value) {
+        $currency_data[$value["currency"]] = $value["ex_rate"];
+    }
+
+    return $currency_data;
+}

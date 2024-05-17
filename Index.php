@@ -2,6 +2,7 @@
 require_once "Includes/config_session.inc.php";
 require_once "Includes/user_acc/signup_view.inc.php";
 require_once "Includes/general_view.php";
+
 ?>
 
 <!DOCTYPE html>

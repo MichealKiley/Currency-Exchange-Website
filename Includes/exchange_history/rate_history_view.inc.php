@@ -14,10 +14,8 @@ function errors_on_search()
     }
 }
 
-function display_currency_type()
+function display_currency_type(array $currency)
 {
-    $currency = $_SESSION["currency_data"];
-
     foreach ($currency as $currency => $ex_rate) {
         echo "<option value=$currency>$currency</option>";
     }

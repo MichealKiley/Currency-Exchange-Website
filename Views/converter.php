@@ -4,7 +4,6 @@ require_once "../Includes/general_view.php";
 require_once "../Includes/conversion/converter_model.inc.php";
 require_once "../Includes/conversion/converter_view.inc.php";
 require_once "../Includes/dbh.inc.php";
-get_currency_type($pdo)
 
 ?>
 
@@ -36,13 +35,13 @@ get_currency_type($pdo)
                     <label>Before</label>
                     <select name="pre_currency">
                         <?php
-                        display_currency_type();
+                        display_currency_type(get_currency_type($pdo));
                         ?>
                     </select>
                     <label>After</label>
                     <select name="post_currency">
                         <?php
-                        display_currency_type();
+                        display_currency_type(get_currency_type($pdo));
                         ?>
                     </select>
                 </div>

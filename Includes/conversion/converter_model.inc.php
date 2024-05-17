@@ -16,7 +16,7 @@ function get_currency_type(object $pdo)
         $currency_data[$value["currency"]] = $value["ex_rate"];
     }
 
-    $_SESSION["currency_data"] = $currency_data;
+    return $currency_data;
 }
 
 function post_conversion_history(object $pdo, string $pre_currency, string $post_currency, string $amount_of_currency)
