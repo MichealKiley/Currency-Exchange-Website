@@ -37,24 +37,11 @@ if (isset($_SESSION["verif_code_timer"])) {
 }
 
 
-//exrate and verif codes timer
-if (!isset($_SESSION["exrate_and_codes_timer"])) {
-    $_SESSION["exrate_and_codes_timer"] = time();
-}
+// refresh verif codes and rate history db's
+require_once "tasks/api_call.php";
+require_once "tasks/verif_codes.php";
+require_once "dbh.inc.php";
 
-if (isset($_SESSION["exrate_and_codes_timer"])) {
-    $api_timer = 60 * 60 * 24;
-
-    if (time() - $_SESSION["exrate_and_codes_timer"] >= $api_timer) {
-        require_once "tasks/api_call.php";
-        require_once "tasks/verif_codes.php";
-        require_once "dbh.inc.php";
-
-        populate_currency_type_db($pdo);
-        populate_rate_history_db($pdo);
-        populate_verif_codes_db($pdo);
-
-        unset($_SESSION["exrate_and_codes_timer"]);
-        header("Refresh:0");
-    }
-}
+populate_currency_type_db($pdo);
+populate_rate_history_db($pdo);
+populate_verif_codes_db($pdo);

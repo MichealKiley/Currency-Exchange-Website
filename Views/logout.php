@@ -1,6 +1,9 @@
 <?php
+require_once "../Includes/tasks/popular_rates.php";
 require_once "../Includes/config_session.inc.php";
 require_once "../Includes/general_view.php";
+require_once "../Includes/dbh.inc.php";
+
 session_unset();
 session_destroy();
 ?>
@@ -25,6 +28,10 @@ session_destroy();
     ?>
     <div class="wrapper">
         <h1>User logged out!</h1>
+        <h4>Top 10 Most Traded Currencies</h4>
+        <?php
+        display_top_currencies(populate_ex_rates($pdo));
+        ?>
     </div>
 </body>
 
