@@ -18,19 +18,14 @@ function password_complexity_checker(string $password, string $username)
     }
 
     //checking for common password contents
+    $list_of_common_contents = array($username, "password", "paasword", "passsword", "p@$\$w0rd", "p@ssw0rd");
 
-    //username
-    if (str_contains(strtolower($password), strtolower($username))) {
-        $errors["pass_contain_username"] = "Password cannot contain your username...";
-        return $errors;
-        die();
-    }
-
-    //"password"
-    if (str_contains(strtolower($password), "password")) {
-        $errors["pass_contain_username"] = "Password cannot contain \"password\"";
-        return $errors;
-        die();
+    foreach ($list_of_common_contents as $value) {
+        if (str_contains(strtolower($password), $value)) {
+            $errors["pass_contain_username"] = "Password cannot contain " . $value . "...";
+            return $errors;
+            die();
+        }
     }
 
     // spliting string into array

@@ -8,6 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         require_once "../config_session.inc.php";
         require_once "pass_reset_contr.inc.php";
         require_once "pass_reset_model.inc.php";
+        require_once "../tasks/password_complexity.php";
         require_once "../dbh.inc.php";
 
         $errors = [];
@@ -19,8 +20,16 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         if ($pwd_1 != $pwd_2) {
             $errors["wrong_pass"] = "Passwords do not match!";
         } else {
+            if (!$errors) {
+                foreach (password_complexity_checker($pwd_1, $_SESSION["reset_user_username"]) as $type => $msg) {
+                    $errors[$type] = $msg;
+                }
+            }
+
             $new_password = password_hash($pwd_1, PASSWORD_BCRYPT, ['cost' => 12]);
         }
+
+
 
         if ($errors) {
             header("Location: /Views/reset.php");
