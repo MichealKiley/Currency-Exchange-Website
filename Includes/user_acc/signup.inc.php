@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         require_once "../dbh.inc.php";
         require_once "signup_model.inc.php";
         require_once "signup_contr.inc.php";
+        require_once "../tasks/password_complexity.php";
 
         // ERROR HANDLERS
         $errors = [];
@@ -29,6 +30,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         if (is_email_taken($pdo, $email)) {
             $errors["email_used"] = "Email already registered!";
+        }
+
+        if (!$errors) {
+            foreach (password_complexity_checker($pwd) as $type => $msg) {
+                $errors[$type] = $msg;
+            }
         }
 
         require_once "../config_session.inc.php";
