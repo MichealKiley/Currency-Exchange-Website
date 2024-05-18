@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         if (!$errors) {
-            foreach (password_complexity_checker($pwd) as $type => $msg) {
+            foreach (password_complexity_checker($pwd, $username) as $type => $msg) {
                 $errors[$type] = $msg;
             }
         }

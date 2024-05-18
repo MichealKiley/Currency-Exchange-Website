@@ -11,10 +11,10 @@ function is_input_empty(string $pre_currency, string $post_currency, string $amo
     }
 }
 
-function make_conversion(string $pre_currency, string $post_currency, string $amount_of_currency)
+function make_conversion(string $pre_currency, string $post_currency, string $amount_of_currency, array $results)
 {
     // check for pre and post currency rates and make the initial conversion
-    foreach ($_SESSION["currency_data"] as $currency => $rate) {
+    foreach ($results as $currency => $rate) {
 
         if ($currency == $pre_currency) {
             $pre_converted_amount = $amount_of_currency / $rate;

@@ -1,6 +1,6 @@
 <?php
 
-function password_complexity_checker(string $password)
+function password_complexity_checker(string $password, string $username)
 {
     // declaring variables
     $cap_char = false;
@@ -13,6 +13,22 @@ function password_complexity_checker(string $password)
     //checking for spaces 
     if (preg_match('/\s/', $password)) {
         $errors["pass_not_space"] = "Password cannot contain a space...";
+        return $errors;
+        die();
+    }
+
+    //checking for common password contents
+
+    //username
+    if (str_contains(strtolower($password), strtolower($username))) {
+        $errors["pass_contain_username"] = "Password cannot contain your username...";
+        return $errors;
+        die();
+    }
+
+    //"password"
+    if (str_contains(strtolower($password), "password")) {
+        $errors["pass_contain_username"] = "Password cannot contain \"password\"";
         return $errors;
         die();
     }

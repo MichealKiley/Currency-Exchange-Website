@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["errors_converter"] = $errors;
             header("Location: /Views/converter.php");
         } else {
-            make_conversion($pre_currency, $post_currency, $amount_of_currency);
+            make_conversion($pre_currency, $post_currency, $amount_of_currency, get_currency_type($pdo));
             post_conversion_history($pdo, $pre_currency, $post_currency, $amount_of_currency);
             header("Location: /Views/converter.php");
         }
