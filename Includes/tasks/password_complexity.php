@@ -63,7 +63,7 @@ function password_complexity_checker(string $password, string $username)
         die();
     }
 
-    // individual errors
+    // common individual errors
     if ($cap_char == false) {
         $errors["pass_not_cap"] = "Password must include a capital letter...";
     }
