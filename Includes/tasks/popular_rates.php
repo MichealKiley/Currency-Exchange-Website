@@ -1,40 +1,47 @@
 <?php
 
-function populate_ex_rates($pdo)
+function populate_ex_rates($pdo, array $top_currencies)
 {
-    $top_currencies = array(
-        "1. US dollar: " => "USD",
-        "2. Euro: " => "EUR",
-        "3. Japanese yen: " => "JPY",
-        "4. British pound sterling: " => "GBP",
-        "5. Chinese renminbi: " => "CNH",
-        "6. Australian dollar: " => "AUD",
-        "7. Canadian dollar: " => "CAD",
-        "8. Swiss franc: " => "CHF",
-        "9. Hong Kong dollar: " => "HKD",
-        "10. New Zealand dollar: " => "NZD",
-    );
-
-    $currency_display = [];
+    $currency_data = [];
 
     foreach ($top_currencies as $label => $currency) {
-        $query = "SELECT ex_rate FROM currency_type WHERE currency = :currency;";
+        $query = "SELECT currency, ex_rate FROM currency_type WHERE currency = :currency;";
         $db_stmt = $pdo->prepare($query);
 
         $db_stmt->bindPARAM(":currency", $currency);
         $db_stmt->execute();
 
-        $results = $db_stmt->fetch(PDO::FETCH_ASSOC);
+        $results = $db_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $currency_display[$label] = $results["ex_rate"];
+        foreach ($results as $value) {
+            $currency_data[$value["currency"]] = $value["ex_rate"];
+        }
     }
 
-    return $currency_display;
+    return $currency_data;
 }
 
-function display_top_currencies(array $currency_display)
+function display_top_currencies(array $currency_data, array $top_currencies)
 {
-    foreach ($currency_display as $text => $rate) {
-        echo "<p>" . $text . $rate .  "</p>";
+    $counter = 1;
+
+    foreach ($currency_data as $type => $ex_rate) {
+        foreach ($top_currencies as $text => $currency) {
+            if ($currency == $type) {
+                $currency_display = array("order" => $counter, "code" => $type, "name" => $text, "rate" => $ex_rate);
+
+                $counter++;
+
+                echo "<tr>";
+
+                foreach ($currency_display as $key => $data) {
+                    if (isset($data)) {
+                        echo "<td>" . $data . "</td>";
+                    }
+                }
+
+                echo "</tr>";
+            }
+        }
     }
 }

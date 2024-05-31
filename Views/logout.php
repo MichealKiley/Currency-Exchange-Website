@@ -4,6 +4,19 @@ require_once "../Includes/config_session.inc.php";
 require_once "../Includes/general_view.php";
 require_once "../Includes/dbh.inc.php";
 
+$top_currencies = array(
+    "US dollar" => "USD",
+    "Euro" => "EUR",
+    "Japanese yen" => "JPY",
+    "British pound sterling" => "GBP",
+    "Chinese renminbi" => "CNY",
+    "Australian dollar" => "AUD",
+    "Canadian dollar" => "CAD",
+    "Swiss franc" => "CHF",
+    "Hong Kong dollar" => "HKD",
+    "New Zealand dollar" => "NZD",
+);
+
 session_unset();
 session_destroy();
 ?>
@@ -26,12 +39,24 @@ session_destroy();
     <?php
     user_view()
     ?>
-    <div class="wrapper">
+    <div class="table-wrapper">
         <h1>User logged out!</h1>
-        <h4>Top 10 Most Traded Currencies</h4>
-        <?php
-        display_top_currencies(populate_ex_rates($pdo));
-        ?>
+        <h3>Top 10 Most Traded Currencies</h3>
+        <table class="history-table">
+            <thead>
+                <tr>
+                    <th>Order</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Rate -> USD</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                display_top_currencies(populate_ex_rates($pdo, $top_currencies), $top_currencies);
+                ?>
+            </tbody>
+        </table>
     </div>
 </body>
 
