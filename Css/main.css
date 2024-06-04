@@ -109,7 +109,16 @@ a {
     top: 50%;
     transform: translateY(-50%);
     font-size: 25px;
-    color: rgb(19, 112, 19);
+    color: rgb(28, 152, 28);
+}
+
+#confirm_see_pass:hover{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 25px;
+    color: rgb(24, 148, 24);
 }
 
 
