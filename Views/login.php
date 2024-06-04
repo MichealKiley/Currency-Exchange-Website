@@ -30,8 +30,8 @@ require_once "../Includes/general_view.php";
                     <i class='bx bxs-user-circle' id="icon-right"></i>
                 </div>
                 <div class="text-field">
-                    <input type="password" name="password" placeholder="Password">
-                    <i class='bx bxs-key' id="icon-right"></i>
+                    <input type="password" name="password" placeholder="Password" id="pass_field">
+                    <i class='bx bxs-key' id="see_pass"></i>
                 </div>
 
                 <button type="submit" class="btn">Login</button>
@@ -51,6 +51,8 @@ require_once "../Includes/general_view.php";
             <p>Dont have an account? <a href="../index.php">Create One Here!</a></p>
         </div>
     </div>
+
+    <script src="../JS/form.js"></script>
 </body>
 
 </html>

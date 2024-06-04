@@ -85,6 +85,34 @@ a {
     color: forestgreen;
 }
 
+#see_pass{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 25px;
+    color: rgb(6, 79, 6);
+}
+
+#confirm_see_pass{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 25px;
+    color: rgb(6, 79, 6);
+}
+
+#see_pass:hover{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 25px;
+    color: rgb(19, 112, 19);
+}
+
+
 #icon-right{
     position: absolute;
     right: 20px;

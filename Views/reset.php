@@ -28,12 +28,12 @@ require_once "../Includes/general_view.php";
         <div class="text-form">
             <form action="../Includes/reset_pass/reset.inc.php" method="post">
                 <div class="text-field">
-                    <input type="password" name="new_pwd_1" id="login_textField" placeholder="New Password">
-                    <i class='bx bxs-user-circle' id="icon-right"></i>
+                    <input type="password" name="new_pwd_1" id="pass_field" placeholder="New Password">
+                    <i class='bx bxs-key' id="see_pass"></i>
                 </div>
                 <div class="text-field">
-                    <input type="password" name="new_pwd_2" id="login_textField" placeholder="Confirm Password">
-                    <i class='bx bxs-user-circle' id="icon-right"></i>
+                    <input type="password" name="new_pwd_2" id="confirm_pass_field" placeholder="Confirm Password">
+                    <i class='bx bxs-key' id="confirm_see_pass"></i>
                 </div>
 
                 <button type="submit" class="btn">Reset</button>
@@ -46,6 +46,9 @@ require_once "../Includes/general_view.php";
             ?>
         </div>
     </div>
+
+
+    <script src="../JS/form.js"></script>
 </body>
 
 </html>
