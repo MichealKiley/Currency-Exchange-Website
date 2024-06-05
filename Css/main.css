@@ -109,7 +109,7 @@ a {
     top: 50%;
     transform: translateY(-50%);
     font-size: 25px;
-    color: rgb(28, 152, 28);
+    color: forestgreen;
 }
 
 #confirm_see_pass:hover{
@@ -118,7 +118,7 @@ a {
     top: 50%;
     transform: translateY(-50%);
     font-size: 25px;
-    color: rgb(24, 148, 24);
+    color: forestgreen;
 }
 
 

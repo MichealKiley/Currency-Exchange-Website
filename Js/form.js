@@ -20,7 +20,6 @@ try {
 }
 
 
-
 try {
     // confirm password
     const confirm_pass_element = document.getElementById("confirm_pass_field");
