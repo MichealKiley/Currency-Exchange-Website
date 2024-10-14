@@ -46,7 +46,7 @@ require_once "../Includes/general_view.php";
             ?>
         </div>
     </div>
-
+    <p>test</p>
 
     <script src="../JS/form.js"></script>
 </body>
